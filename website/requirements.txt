@@ -1,2 +1,6 @@
 flask
 flask_uploads
+numpy
+opencv-python
+tensorflow
+keras

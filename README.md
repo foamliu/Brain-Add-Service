@@ -10,3 +10,17 @@
 - 视频插帧
 - 空间感知
 
+```bash
+docker build -t foamliu/brain-add-web .
+docker push  foamliu/brain-add-web
+docker run -it -p 5001:5001 foamliu/brain-add-web
+```
+
+```bash
+az group create --name myAKSCluster --location eastus
+az aks create --resource-group myAKSCluster --name myAKSCluster --node-count 1 --generate-ssh-keys
+az aks get-credentials --resource-group myAKSCluster --name myAKSCluster
+kubectl get nodes
+kubectl apply -f brain-add-web.yaml
+kubectl get service brain-add-web --watch
+```
