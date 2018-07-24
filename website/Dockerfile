@@ -1,14 +1,16 @@
-FROM python:3-alpine
+FROM ubuntu:16.04
 MAINTAINER Yang Liu <foamliu@yeah.net>
+RUN apt-get update -y
+RUN apt-get -y install python3-pip
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 COPY requirements.txt /usr/src/app/
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip3 install --no-cache-dir -r requirements.txt
 
 COPY . /usr/src/app
 
 # Expose the Flask port
 EXPOSE 5001
 
-CMD [ "python", "./app.py" ]
+CMD [ "python3", "./app.py" ]
