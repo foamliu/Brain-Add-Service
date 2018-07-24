@@ -1,0 +1,28 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: brain-add-web
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: brain-add-web
+    spec:
+      containers:
+      - name: brain-add-web
+        image: foamliu/brain-add-web
+        ports:
+        - containerPort: 5001
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: brain-add-web
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 5001
+  selector:
+    app: brain-add-web
