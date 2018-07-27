@@ -23,4 +23,11 @@ az aks get-credentials --resource-group myAKSCluster --name myAKSCluster
 kubectl get nodes
 kubectl apply -f brain-add-web.yaml
 kubectl get service brain-add-web --watch
+
+docker tag foamliu/brain-add-web:latest foamliu/brain-add-web:v0.0.2
+docker push foamliu/brain-add-web:v0.0.2
+kubectl set image deployment/brain-add-web brain-add-web=foamliu/brain-add-web:v0.0.2
+kubectl rollout status deploy/brain-add-web
+
+kubectl get service brain-add-web --watch
 ```
