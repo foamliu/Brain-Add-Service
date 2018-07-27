@@ -13,7 +13,7 @@
 ```bash
 docker build -t foamliu/brain-add-web .
 docker push  foamliu/brain-add-web
-docker run -it -p 5001:5001 foamliu/brain-add-web
+docker run -it -p 5001:5001 foamliu/brain-add-web:v0.0.5
 ```
 
 ```bash
@@ -24,9 +24,9 @@ kubectl get nodes
 kubectl apply -f brain-add-web.yaml
 kubectl get service brain-add-web --watch
 
-docker tag foamliu/brain-add-web:latest foamliu/brain-add-web:v0.0.2
-docker push foamliu/brain-add-web:v0.0.2
-kubectl set image deployment/brain-add-web brain-add-web=foamliu/brain-add-web:v0.0.2
+docker tag foamliu/brain-add-web:latest foamliu/brain-add-web:v0.0.6
+docker push foamliu/brain-add-web:v0.0.6
+kubectl set image deployment/brain-add-web brain-add-web=foamliu/brain-add-web:v0.0.6
 kubectl rollout status deploy/brain-add-web
 
 kubectl get service brain-add-web --watch
