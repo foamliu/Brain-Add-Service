@@ -30,4 +30,4 @@ def show(name):
     if name is None:
         abort(404)
     url = photos.url(name)
-    return render_template('show.html', url=url, name=name)
+    return render_template('show.html', src_url=url, dst_url='uploads/output.png')
