@@ -10,17 +10,35 @@
 - 视频插帧
 - 空间感知
 
+
+## 如何使用
+### 构建容器
+
 ```bash
 docker build -t foamliu/brain-add-web .
 docker push  foamliu/brain-add-web
-docker run -it -p 5001:5001 foamliu/brain-add-web
+docker run -it -p 5001:5001 foamliu/brain-add-web:v0.0.5
 ```
+
+### 部署 Kubernetes 集群
 
 ```bash
 az group create --name myAKSCluster --location eastus
 az aks create --resource-group myAKSCluster --name myAKSCluster --node-count 1 --generate-ssh-keys
 az aks get-credentials --resource-group myAKSCluster --name myAKSCluster
 kubectl get nodes
+```
+
+### 部署脑补服务
+
+```bash
 kubectl apply -f brain-add-web.yaml
+kubectl get service brain-add-web --watch
+
+docker tag foamliu/brain-add-web:latest foamliu/brain-add-web:v0.0.6
+docker push foamliu/brain-add-web:v0.0.6
+kubectl set image deployment/brain-add-web brain-add-web=foamliu/brain-add-web:v0.0.6
+kubectl rollout status deploy/brain-add-web
+
 kubectl get service brain-add-web --watch
 ```
