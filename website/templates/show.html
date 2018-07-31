@@ -1,26 +1,193 @@
-<!doctype html>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-<div class="text-center"> 
-    <span class="badge badge-pill badge-success">结果</span>
-</div>
-<div class="text-center">
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Brain-add service</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+        img {
+            max-width: 100%;
+        }
 
-    <figure class="figure d-inline-block col-md-5">
-        <img src={{ src_url }} class="figure-img img-fluid">
-        <figcaption class="figure-caption">Before</figcaption>
-    </figure>
-    <figure class="figure d-inline-block col-md-5">
-        <img src={{ dst_url }} class="figure-img img-fluid">
-        <figcaption class="figure-caption">After</figcaption>
-    </figure>
-</div>
+        a {
+            -webkit-transition: all 150ms ease;
+            -moz-transition: all 150ms ease;
+            -o-transition: all 150ms ease;
+            transition: all 150ms ease;
+        }
 
-<div class="text-center">
-        <form method=POST enctype=multipart/form-data action="{{ url_for('upload_photo') }}">
-            <input type="file" name="photo"  accept="image/*">
-            <input type=submit>
-        </form>
-</div>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+            a:hover {
+                -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; /* IE 8 */
+                filter: alpha(opacity=50); /* IE7 */
+                opacity: 0.6;
+                text-decoration: none;
+            }
+
+        .thumbnails li > .fff .caption {
+            background: #fff !important;
+            padding: 10px
+        }
+
+        /* Page Header */
+        .page-header {
+            background: #f9f9f9;
+            margin: 30px -40px 40px;
+            padding: 20px 40px;
+            border-top: 4px solid #ccc;
+            color: #999;
+            text-align: center;
+        }
+
+        .page-header h3 {
+            line-height: 0.88rem;
+            color: #000;
+        }
+
+        .row {
+            margin-bottom: 30px;
+        }
+
+        .column{
+            text-align: center;
+            padding: 0;
+        }
+
+        ul.thumbnails {
+            margin-bottom: 0px;
+        }
+
+        /* Thumbnail Box */
+        .caption h4 {
+            color: #444;
+        }
+
+        .caption p {
+            color: #999;
+        }
+
+        /* Carousel Control */
+        .control-box {
+            text-align: center;
+            width: 100%;
+        }
+
+    </style>
+
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="col-xs-12">
+
+        <div class="page-header">
+            <h3>Brain Add Service</h3>
+        </div>
+
+        <div class="row">
+            <div class="text-center">
+                <figure class="figure d-inline-block col-md-6">
+                    <img src={{ src_url }} class="figure-img img-fluid">
+                    <figcaption class="figure-caption"><h4>Before</h4></figcaption>
+                </figure>
+                <figure class="figure d-inline-block col-md-6">
+                    <img src={{ dst_url }} class="figure-img img-fluid">
+                    <figcaption class="figure-caption"><h4>After</h4></figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <div class="row">
+  
+                <form method=POST enctype=multipart/form-data action="{{ url_for('upload_photo') }}">
+                    <div class="col-lg-3 col-sm-6">
+                        <input type="file" name="photo" accept="image/*">
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <button type="submit" class="pull-left">Submit</button>
+                    </div>
+                </form>
+
+        </div>
+
+        <div class="row">
+            <div class="carousel slide" id="myCarousel">
+                <div class="carousel-inner">
+                    <!-- /Slide1 -->
+                    <div class="item active">
+                        <div class="col-sm-3">
+                            <a href="/photo/b1.jpg"><img src="../static/pictures/b1.jpg" alt=""></a>
+                        </div>
+                        <div class="col-sm-3">
+                            <a href="/photo/b2.jpg"><img src="../static/pictures/b2.jpg" alt=""></a>
+                        </div>
+                        <div class="col-sm-3">
+                            <a href="/photo/b3.jpg"><img src="../static/pictures/b3.jpg" alt=""></a>
+                        </div>
+                        <div class="col-sm-3">
+                            <a href="/photo/b4.jpg"><img src="../static/pictures/b4.jpg" alt=""></a>
+                        </div>
+                    </div>
+
+                    <!-- /Slide2 -->
+                    <div class="item">
+                        <div class="col-sm-3">
+                            <a href="#"><img src="../static/pictures/b1.jpg" alt=""></a>
+                        </div>
+                        <div class="col-sm-3">
+                            <a href="#"><img src="../static/pictures/b2.jpg" alt=""></a>
+                        </div>
+                        <div class="col-sm-3">
+                            <a href="#"><img src="../static/pictures/b3.jpg" alt=""></a>
+                        </div>
+                        <div class="col-sm-3">
+                            <a href="#"><img src="../static/pictures/b4.jpg" alt=""></a>
+                        </div>
+                    </div>
+
+                    <!-- /Slide3 -->
+                    <div class="item">
+                        <div class="col-sm-3">
+                            <a href="#"><img src="../static/pictures/b1.jpg" alt=""></a>
+                        </div>
+                        <div class="col-sm-3">
+                            <a href="#"><img src="../static/pictures/b2.jpg" alt=""></a>
+                        </div>
+                        <div class="col-sm-3">
+                            <a href="#"><img src="../static/pictures/b3.jpg" alt=""></a>
+                        </div>
+                        <div class="col-sm-3">
+                            <a href="#"><img src="../static/pictures/b4.jpg" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+
+                <nav>
+                    <ul class="control-box pager">
+                        <li><a data-slide="prev" href="#myCarousel" class=""><i class="glyphicon glyphicon-chevron-left"></i></a></li>
+                        <li><a data-slide="next" href="#myCarousel" class=""><i class="glyphicon glyphicon-chevron-right"></i></a></li>
+                    </ul>
+                </nav>
+                <!-- /.control-box -->
+
+            </div><!-- /#myCarousel -->
+        </div><!-- /.row -->
+    </div><!-- /.col-xs-12 -->          
+
+</div><!-- /.container -->
+
+<script type="text/javascript">
+// Carousel Auto-Cycle
+  $(document).ready(function() {
+    $('.carousel').carousel({
+      interval: 6000
+    })
+  });
+</script>
+
+</body>
+
+</html>
