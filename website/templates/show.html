@@ -116,53 +116,23 @@
         <div class="row">
             <div class="carousel slide" id="myCarousel">
                 <div class="carousel-inner">
-                    <!-- /Slide1 -->
+
+                    {%for slide in sample_pictures%}
+                    {% if loop.first %}
                     <div class="item active">
-                        <div class="col-sm-3">
-                            <a href="/photo/b1.jpg"><img src="../static/pictures/b1.jpg" alt=""></a>
-                        </div>
-                        <div class="col-sm-3">
-                            <a href="/photo/b2.jpg"><img src="../static/pictures/b2.jpg" alt=""></a>
-                        </div>
-                        <div class="col-sm-3">
-                            <a href="/photo/b3.jpg"><img src="../static/pictures/b3.jpg" alt=""></a>
-                        </div>
-                        <div class="col-sm-3">
-                            <a href="/photo/b4.jpg"><img src="../static/pictures/b4.jpg" alt=""></a>
-                        </div>
-                    </div>
-
-                    <!-- /Slide2 -->
+                    {% else %}
                     <div class="item">
+                    {% endif %}
+                    
+                        {%for picture in slide%}
                         <div class="col-sm-3">
-                            <a href="#"><img src="../static/pictures/b1.jpg" alt=""></a>
+                            <a href={{ "/photo/" + picture }}><img src={{ "../static/pictures/"+ picture }} alt=""></a>
                         </div>
-                        <div class="col-sm-3">
-                            <a href="#"><img src="../static/pictures/b2.jpg" alt=""></a>
-                        </div>
-                        <div class="col-sm-3">
-                            <a href="#"><img src="../static/pictures/b3.jpg" alt=""></a>
-                        </div>
-                        <div class="col-sm-3">
-                            <a href="#"><img src="../static/pictures/b4.jpg" alt=""></a>
-                        </div>
-                    </div>
+                        {%endfor%}
 
-                    <!-- /Slide3 -->
-                    <div class="item">
-                        <div class="col-sm-3">
-                            <a href="#"><img src="../static/pictures/b1.jpg" alt=""></a>
-                        </div>
-                        <div class="col-sm-3">
-                            <a href="#"><img src="../static/pictures/b2.jpg" alt=""></a>
-                        </div>
-                        <div class="col-sm-3">
-                            <a href="#"><img src="../static/pictures/b3.jpg" alt=""></a>
-                        </div>
-                        <div class="col-sm-3">
-                            <a href="#"><img src="../static/pictures/b4.jpg" alt=""></a>
-                        </div>
                     </div>
+                    {%endfor%}
+
                 </div>
 
                 <nav>
