@@ -102,7 +102,7 @@
 
         <div class="row">
   
-                <form method=POST enctype=multipart/form-data action="{{ url_for('upload_photo') }}">
+                <form method=POST enctype=multipart/form-data action="{{ url_for('colorize_upload') }}">
                     <div class="col-lg-3 col-sm-6">
                         <input type="file" name="photo" accept="image/*">
                     </div>
@@ -126,12 +126,13 @@
                     
                         {%for picture in slide%}
                         <div class="col-sm-3">
-                            <a href={{ "/photo/" + picture }}><img src={{ "../static/pictures/"+ picture }} alt=""></a>
+                            <a href={{ "/colorize/sample/" + picture }}><img src={{ "/static/images/colorize/"+ picture }} alt=""></a>
                         </div>
                         {%endfor%}
 
                     </div>
                     {%endfor%}
+                    </div>
 
                 </div>
 
