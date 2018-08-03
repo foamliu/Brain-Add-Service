@@ -3,105 +3,64 @@
 <head>
     <meta charset="utf-8">
     <title>Brain-add service</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <style type="text/css">
-        img {
-            max-width: 100%;
-        }
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        a {
-            -webkit-transition: all 150ms ease;
-            -moz-transition: all 150ms ease;
-            -o-transition: all 150ms ease;
-            transition: all 150ms ease;
-        }
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/brain-add-service.css" rel="stylesheet">
 
-            a:hover {
-                -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; /* IE 8 */
-                filter: alpha(opacity=50); /* IE7 */
-                opacity: 0.6;
-                text-decoration: none;
-            }
-
-        .thumbnails li > .fff .caption {
-            background: #fff !important;
-            padding: 10px
-        }
-
-        /* Page Header */
-        .page-header {
-            background: #f9f9f9;
-            margin: 30px -40px 40px;
-            padding: 20px 40px;
-            border-top: 4px solid #ccc;
-            color: #999;
-            text-align: center;
-        }
-
-        .page-header h3 {
-            line-height: 0.88rem;
-            color: #000;
-        }
-
-        .row {
-            margin-bottom: 30px;
-        }
-
-        .column{
-            text-align: center;
-            padding: 0;
-        }
-
-        ul.thumbnails {
-            margin-bottom: 0px;
-        }
-
-        /* Thumbnail Box */
-        .caption h4 {
-            color: #444;
-        }
-
-        .caption p {
-            color: #999;
-        }
-
-        /* Carousel Control */
-        .control-box {
-            text-align: center;
-            width: 100%;
-        }
-
-    </style>
 
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
 </head>
 
 <body>
 
-<div class="container">
-    <div class="col-xs-12">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
 
-        <div class="page-header">
-            <h3>Brain Add Service</h3>
-        </div>
-
-        <div class="row">
-            <div class="text-center">
-                <figure class="figure d-inline-block col-md-6">
-                    <img src={{ src_url }} class="figure-img img-fluid">
-                    <figcaption class="figure-caption"><h4>Before</h4></figcaption>
-                </figure>
-                <figure class="figure d-inline-block col-md-6">
-                    <img src={{ dst_url }} class="figure-img img-fluid">
-                    <figcaption class="figure-caption"><h4>After</h4></figcaption>
-                </figure>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Brain Add Service</a>
             </div>
-        </div>
 
-        <div class="row">
-  
+            <div class="collapse navbar-collapse" id="navbar-1">
+                
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="/colorize">Colorize</a></li>
+                    <li><a href="/caption">Captioning</a></li>
+                </ul>
+
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="container">
+        <div class="col-xs-12">
+
+            <div class="page-header">
+                <h3>Image Colorize</h3>
+            </div>
+
+            <div class="row">
+                <div class="text-center">
+                    <figure class="figure d-inline-block col-md-6">
+                        <img src={{ src_url }} class="figure-img img-fluid">
+                        <figcaption class="figure-caption"><h4>Before</h4></figcaption>
+                    </figure>
+                    <figure class="figure d-inline-block col-md-6">
+                        <img src={{ dst_url }} class="figure-img img-fluid">
+                        <figcaption class="figure-caption"><h4>After</h4></figcaption>
+                    </figure>
+                </div>
+            </div>
+
+            <div class="row">
+
                 <form method=POST enctype=multipart/form-data action="{{ url_for('colorize_upload') }}">
                     <div class="col-lg-3 col-sm-6">
                         <input type="file" name="photo" accept="image/*">
@@ -111,53 +70,45 @@
                     </div>
                 </form>
 
-        </div>
+            </div>
 
-        <div class="row">
-            <div class="carousel slide" id="myCarousel">
-                <div class="carousel-inner">
+            <div class="row">
+                <div class="carousel slide" id="myCarousel">
+                    <div class="carousel-inner">
 
-                    {%for slide in sample_pictures%}
-                    {% if loop.first %}
-                    <div class="item active">
-                    {% else %}
-                    <div class="item">
-                    {% endif %}
-                    
-                        {%for picture in slide%}
-                        <div class="col-sm-3">
-                            <a href={{ "/colorize/sample/" + picture }}><img src={{ "/static/images/colorize/"+ picture }} alt=""></a>
+                        {%for slide in sample_pictures%}
+                        {% if loop.first %}
+                        <div class="item active">
+                        {% else %}
+                        <div class="item">
+                        {% endif %}
+
+                            {%for picture in slide%}
+                            <div class="col-sm-3">
+                                <a href={{ "/colorize/sample/" + picture }}><img src={{ "/static/images/colorize/"+ picture }} alt=""></a>
+                            </div>
+                            {%endfor%}
+
                         </div>
                         {%endfor%}
 
                     </div>
-                    {%endfor%}
-                    </div>
 
-                </div>
+                    <nav>
+                        <ul class="control-box pager">
+                            <li><a data-slide="prev" href="#myCarousel" class=""><i class="glyphicon glyphicon-chevron-left"></i></a></li>
+                            <li><a data-slide="next" href="#myCarousel" class=""><i class="glyphicon glyphicon-chevron-right"></i></a></li>
+                        </ul>
+                    </nav>
+                    <!-- /.control-box -->
 
-                <nav>
-                    <ul class="control-box pager">
-                        <li><a data-slide="prev" href="#myCarousel" class=""><i class="glyphicon glyphicon-chevron-left"></i></a></li>
-                        <li><a data-slide="next" href="#myCarousel" class=""><i class="glyphicon glyphicon-chevron-right"></i></a></li>
-                    </ul>
-                </nav>
-                <!-- /.control-box -->
+                </div><!-- /#myCarousel -->
+            </div><!-- /.row -->
+        </div><!-- /.col-xs-12 -->
 
-            </div><!-- /#myCarousel -->
-        </div><!-- /.row -->
-    </div><!-- /.col-xs-12 -->          
+    </div><!-- /.container -->
 
-</div><!-- /.container -->
-
-<script type="text/javascript">
-// Carousel Auto-Cycle
-  $(document).ready(function() {
-    $('.carousel').carousel({
-      interval: 6000
-    })
-  });
-</script>
+    <script src="/static/js/brain-add-service.js"></script>
 
 </body>
 
